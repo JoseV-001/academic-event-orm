@@ -2,6 +2,8 @@ package com.josev001.academic_event_orm.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -22,6 +24,9 @@ public class Atividade {
     public Atividade() {
 
     }
+
+    @OneToMany(mappedBy = "atividade")
+    private List<Bloco> blocos = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -68,6 +73,10 @@ public class Atividade {
 
     public Categoria getCategoria() {
         return categoria;
+    }
+
+    public List<Bloco> getBlocos() {
+        return blocos;
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.josev001.academic_event_orm.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +17,11 @@ public class Bloco {
 
     private Instant inicio;
     private Instant fim;
+
+    @ManyToOne
+    @JoinColumn(name = "atividade_id")
+    private Atividade atividade;
+
 
     public Bloco() {
 
@@ -48,6 +55,10 @@ public class Bloco {
 
     public void setFim(Instant fim) {
         this.fim = fim;
+    }
+
+    public Atividade getAtividade() {
+        return atividade;
     }
 
     @Override

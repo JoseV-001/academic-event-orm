@@ -1,17 +1,18 @@
-package com.josev001.academic_event_orm;
+package com.josev001.academic_event_orm.entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_categoria")
 public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(columnDefinition = "TEXT")
     private String descricao;
 
     public Categoria(){
@@ -51,11 +52,4 @@ public class Categoria {
         return Objects.hashCode(id);
     }
 
-    @Override
-    public String toString() {
-        return "Categoria{" +
-                "id=" + id +
-                ", descricao='" + descricao + '\'' +
-                '}';
-    }
 }

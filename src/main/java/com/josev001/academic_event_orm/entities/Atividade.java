@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_participante")
-public class Participante {
+@Table(name = "tb_atividade")
+public class Atividade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,17 +14,20 @@ public class Participante {
 
     private String nome;
 
-    @Column(unique = true)
-    private String email;
+    @Column(columnDefinition = "TEXT")
+    private String descricao;
 
-    public Participante() {
+    private Double preco;
+
+    public Atividade() {
 
     }
 
-    public Participante(Integer id, String nome, String email) {
+    public Atividade(Integer id, String nome, String descricao, Double preco) {
         this.id = id;
         this.nome = nome;
-        this.email = email;
+        this.descricao = descricao;
+        this.preco = preco;
     }
 
     public Integer getId() {
@@ -43,19 +46,27 @@ public class Participante {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Participante that = (Participante) o;
-        return Objects.equals(id, that.id);
+        Atividade atividade = (Atividade) o;
+        return Objects.equals(id, atividade.id);
     }
 
     @Override

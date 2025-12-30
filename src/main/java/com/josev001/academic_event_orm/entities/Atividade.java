@@ -2,9 +2,7 @@ package com.josev001.academic_event_orm.entities;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -31,6 +29,9 @@ public class Atividade {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    @ManyToMany(mappedBy = "atividades")
+    private Set<Participante> participantes = new HashSet<>();
 
     public Atividade(Integer id, String nome, String descricao, Double preco) {
         this.id = id;
@@ -79,6 +80,10 @@ public class Atividade {
         return blocos;
     }
 
+    public Set<Participante> getParticipantes() {
+        return participantes;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
